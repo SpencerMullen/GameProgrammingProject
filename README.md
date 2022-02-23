@@ -1,12 +1,10 @@
-# GameProgrammingProject
+# Game Programming Project
 
-CS 3540 – Game Design Document
-Group 14
-Group Members:
-Jason Vu Nguyen,
-HyunJoon Kim
-Spencer Mullen
-Yuyang Wei
+CS 3540 – Game Design Document <br />
+Group 14 <br />
+Group Members: <br />
+Jason Vu Nguyen, HyunJoon Kim, Spencer Mullen, Yuyang Wei
+<br />
 Radioactive Earth
 
 1. Characters <br />
