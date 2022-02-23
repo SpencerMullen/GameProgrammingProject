@@ -20,7 +20,7 @@ The game world is a post-apocalyptic setting, overrun with radioactive monsters.
 
 4. Gameplay <br />
 Our game genre can be loosely classified as 3rd person shooter roguelike with tower defense elements. For the main gameplay, the game will take the form of a third-person shooter. You fight by shooting enemies during the day, while upgrading at night. Lab upgrades can include turrets/traps which incorporate subtle tower defense elements. It isn’t strictly a roguelike but does have some aspects of roguelikes because players make upgrades during runs and can use currency to make permanent upgrades outside of specific runs. Every few rounds, there may be a more powerful mini-boss that will be difficult to defeat.
-<br />
+
 Overall (Long Term) : Survive as many rounds as you can in order to approach the final boss. <br />
 Rounds (Short Term) : Defeat the enemies presented to you and upgrade your current self and the laboratory. 
 
