@@ -44,6 +44,8 @@
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\TurretAI.cs" />
      <Compile Include="Assets\Scripts\EnemyMovement.cs" />
+     <Compile Include="Assets\Scripts\MouseLook.cs" />
+     <Compile Include="Assets\Scripts\FPSController.cs" />
      <None Include="Assets\SimpleApocalypse\_Materials\UnlitVertexColour_Alpha.shader" />
      <None Include="Assets\SimpleApocalypse\ReadMe.txt" />
      <None Include="Assets\PolygonSciFiCity\_Shaders\Polygon_Triplanar.shader" />
