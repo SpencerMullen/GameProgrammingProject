@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemy;
+    public int[] enemyxpos = { -49, 10, 65 };
+    public int enemyzpos = 170;
 
     [SerializeField]
     private int maxEnemyCount = 10; // how many enemies you are going to spawn
@@ -13,7 +15,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     private float spawnInterval; // time it takes to spawn each enemies
 
-    public Transform leftSpawnPos, rightSpawnPos; // enemy spawn position, spawns in between two game objects
+    //public Transform leftSpawnPos, rightSpawnPos; // enemy spawn position, spawns in between two game objects
 
     void Start()
     {
@@ -30,9 +32,9 @@ public class EnemySpawner : MonoBehaviour
     {
         Debug.Log("Enemy spawned");
         var enem = Instantiate(enemy, 
-            new Vector3(Random.Range(leftSpawnPos.position.x, rightSpawnPos.position.x), 
+            new Vector3(enemyxpos[Random.Range(0,3)], 
                                     1.59f, 
-                                    Random.Range(leftSpawnPos.position.z, rightSpawnPos.position.z)), Quaternion.identity);
+                                    enemyzpos), Quaternion.identity);
 
         currentEnemyCount++;
         yield return new WaitForSeconds(spawnInterval);
