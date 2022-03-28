@@ -3922,7 +3922,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 435102, guid: bd0c560960a4aac4dbdf62db08be8a41, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.08025
+      value: -10.3
       objectReference: {fileID: 0}
     - target: {fileID: 435102, guid: bd0c560960a4aac4dbdf62db08be8a41, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4560,9 +4560,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 575264336}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 056cc921f3c3db94d9d200b2be5235d3, type: 3}
+  m_Script: {fileID: 11500000, guid: d223c569b627f1347800a06921e173cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 350576433608761659, guid: a4ab70005e855af45bd1914a2f3b33d4, type: 3}
+  enemyxpos: cfffffff0800000041000000
+  enemyzpos: 150
+  maxEnemyCount: 10
+  spawnInterval: 0
 --- !u!4 &575264338
 Transform:
   m_ObjectHideFlags: 0
@@ -9470,7 +9475,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1314784331}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.62000084, y: 3.06, z: -5.6399994}
+  m_LocalPosition: {x: -0.01, y: 2.27, z: 0.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1812099254}
@@ -9485,9 +9490,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1314784331}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7714e60fe6ac4486799428f19c2588bb, type: 3}
+  m_Script: {fileID: 11500000, guid: afe2c33693ed6a94dbd24ef4c9a88c12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  referenceTransform: {fileID: 1812099254}
+  collisionOffset: 0.3
+  cameraSpeed: 15
 --- !u!81 &1314784334
 AudioListener:
   m_ObjectHideFlags: 0
@@ -13771,7 +13779,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   jump: {x: 0, y: 0, z: 0}
-  jumpForce: 5
+  jumpForce: 4
   isGrounded: 0
   resetTime: 0
   isReset: 0
