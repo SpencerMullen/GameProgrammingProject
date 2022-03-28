@@ -4438,6 +4438,7 @@ GameObject:
   - component: {fileID: 350576433599087021}
   - component: {fileID: 2114749702729953920}
   - component: {fileID: 1130088534138032000}
+  - component: {fileID: 433159071894566119}
   m_Layer: 0
   m_Name: SA_Zombie_Grandma
   m_TagString: Untagged
@@ -4558,6 +4559,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 2.14, z: 1}
   m_Center: {x: 0, y: 1.81, z: 0}
+--- !u!114 &433159071894566119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 350576433608761659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f79a05e8ba6054545a19a229e5c45aa2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  moveSpeed: 5
 --- !u!1 &350576433608761917
 GameObject:
   m_ObjectHideFlags: 0

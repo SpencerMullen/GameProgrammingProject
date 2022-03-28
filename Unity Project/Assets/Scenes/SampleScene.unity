@@ -1489,5 +1489,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: SA_Zombie_Grandma
       objectReference: {fileID: 0}
+    - target: {fileID: 350576433608761659, guid: a4ab70005e855af45bd1914a2f3b33d4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 433159071894566119, guid: a4ab70005e855af45bd1914a2f3b33d4, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 2085666676}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4ab70005e855af45bd1914a2f3b33d4, type: 3}
