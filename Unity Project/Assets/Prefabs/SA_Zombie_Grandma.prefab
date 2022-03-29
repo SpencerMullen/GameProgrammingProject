@@ -4439,6 +4439,7 @@ GameObject:
   - component: {fileID: 2114749702729953920}
   - component: {fileID: 1130088534138032000}
   - component: {fileID: 433159071894566119}
+  - component: {fileID: -7666689036461877386}
   m_Layer: 6
   m_Name: SA_Zombie_Grandma
   m_TagString: Enemy
@@ -4573,6 +4574,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   moveSpeed: 5
+--- !u!114 &-7666689036461877386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 350576433608761659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ad209afb9d445f408f3c0c28ebc30a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyKilled: {fileID: 194062, guid: 8c27aeead6d968e4ba986702d6b84335, type: 3}
+  enemyFXS: {fileID: 8300000, guid: eec961d9965b09c468aa1b0cdaa1bce5, type: 3}
 --- !u!1 &350576433608761917
 GameObject:
   m_ObjectHideFlags: 0
