@@ -11,6 +11,7 @@ public class EnemySpawner : MonoBehaviour
         public float rightX;
     }
     
+    public Transform targetPoint;
 
     public GameObject enemy;
     //public int[] enemyxpos = { -49, 10, 65 };
@@ -56,6 +57,7 @@ public class EnemySpawner : MonoBehaviour
                                     enemyzpos), Quaternion.identity);
         //spawnedEnemies.Add(enem.gameObject);
         SpawnManager.Instance.spawnedEnemies.Add(enem.gameObject);
+        enem.GetComponent<EnemyMovement>().SetTarget(targetPoint);
 
         currentEnemyCount++;
         yield return new WaitForSeconds(spawnIntervalTime);

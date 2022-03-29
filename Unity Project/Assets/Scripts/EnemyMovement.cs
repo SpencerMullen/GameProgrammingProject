@@ -38,4 +38,8 @@ public class EnemyMovement : MonoBehaviour
     {
         transform.position = initialPosition; 
     }
+
+    public void SetTarget(Transform target) {
+        this.target = target;
+    }
 }
