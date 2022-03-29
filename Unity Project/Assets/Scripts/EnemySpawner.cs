@@ -4,26 +4,43 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    [System.Serializable]
+    public struct SpawnPos
+    {
+        public float leftX;
+        public float rightX;
+    }
+    
+
     public GameObject enemy;
-    public int[] enemyxpos = { -49, 10, 65 };
+    //public int[] enemyxpos = { -49, 10, 65 };
+    public SpawnPos[] enemyXPos;
     public int enemyzpos = 170;
+
+
 
     [SerializeField]
     private int maxEnemyCount = 10; // how many enemies you are going to spawn
     int currentEnemyCount; // enemies count to keep track of
 
     [SerializeField]
-    private float spawnInterval; // time it takes to spawn each enemies
+    private float spawnIntervalTime; // time it takes to spawn each enemies
 
     //public Transform leftSpawnPos, rightSpawnPos; // enemy spawn position, spawns in between two game objects
 
     void Start()
     {
         currentEnemyCount = 0;
-        SpawnEnemies();
+        
     }
 
-    void SpawnEnemies()
+    public void SetSpawner(int enemyCount, int intervalTime=1)
+    {
+        currentEnemyCount = 0;
+        maxEnemyCount = enemyCount;
+        spawnIntervalTime = intervalTime; 
+    }
+    public void SpawnEnemies()
     {
         StartCoroutine(StartSpawn());
     }
@@ -31,15 +48,19 @@ public class EnemySpawner : MonoBehaviour
     IEnumerator StartSpawn()
     {
         Debug.Log("Enemy spawned");
+        int ind = Random.Range(0, enemyXPos.Length);
+
         var enem = Instantiate(enemy, 
-            new Vector3(enemyxpos[Random.Range(0,3)], 
+            new Vector3(Random.Range(enemyXPos[ind].leftX, enemyXPos[ind].rightX), 
                                     1.59f, 
                                     enemyzpos), Quaternion.identity);
+        //spawnedEnemies.Add(enem.gameObject);
+        SpawnManager.Instance.spawnedEnemies.Add(enem.gameObject);
 
         currentEnemyCount++;
-        yield return new WaitForSeconds(spawnInterval);
+        yield return new WaitForSeconds(spawnIntervalTime);
 
-        if (currentEnemyCount < maxEnemyCount)
+        if (currentEnemyCount+1 < maxEnemyCount)
         {
             StartCoroutine(StartSpawn());
         }
