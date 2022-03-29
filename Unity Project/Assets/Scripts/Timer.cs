@@ -10,6 +10,8 @@ public class Timer : MonoBehaviour
     int countdown = 120;
     public Text timerUI;
     GameObject[] enemies;
+    public AudioClip win;
+    public AudioClip lose;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +30,7 @@ public class Timer : MonoBehaviour
     } 
     else {  
       timerUI.text = "GameOver!";
+      AudioSource.PlayClipAtPoint(lose, Camera.main.transform.position);
       Invoke("loadGame", 2.0f);  
     }  
     }  
@@ -35,6 +38,7 @@ public class Timer : MonoBehaviour
       enemies = GameObject.FindGameObjectsWithTag("Enemy");
       if(enemies.Length == 0){
         timerUI.text = "You Win!";
+        AudioSource.PlayClipAtPoint(win, Camera.main.transform.position);
         Invoke("loadGame", 1.0f);  
     }
   }
