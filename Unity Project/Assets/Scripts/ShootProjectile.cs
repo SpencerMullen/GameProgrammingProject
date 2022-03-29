@@ -35,7 +35,7 @@ public class ShootProjectile : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            //Shoots();
+            Shoot_physics();
         }
     }
 
