@@ -54,21 +54,21 @@ public class SpawnManager : MonoBehaviour
         switch(waveType)
         {
             case eEnemyWave.Lane1:
-                spawner1.SetSpawner(enemyNum);
+                spawner1.SetSpawner(enemyNum, 3);
                 spawner1.SpawnEnemies();
                 break;
             case eEnemyWave.Lane2:
-                spawner2.SetSpawner(enemyNum);
+                spawner2.SetSpawner(enemyNum, 3);
                 spawner2.SpawnEnemies();
                 break;
             case eEnemyWave.Lane3:
-                spawner3.SetSpawner(enemyNum);
+                spawner3.SetSpawner(enemyNum, 3);
                 spawner3.SpawnEnemies();
                 break;
             case eEnemyWave.All:
-                spawner1.SetSpawner(enemyNum);
-                spawner2.SetSpawner(enemyNum);
-                spawner3.SetSpawner(enemyNum);
+                spawner1.SetSpawner(enemyNum, 3);
+                spawner2.SetSpawner(enemyNum, 3);
+                spawner3.SetSpawner(enemyNum, 3);
                 spawner1.SpawnEnemies();
                 spawner2.SpawnEnemies();
                 spawner3.SpawnEnemies();
@@ -95,5 +95,9 @@ public class SpawnManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public int getWave() {
+        return waveIndex;
     }
 }

@@ -35,10 +35,10 @@ public class EnemySpawner : MonoBehaviour
         
     }
 
-    public void SetSpawner(int enemyCount, int intervalTime=1)
+    public void SetSpawner(int enemyCount, int intervalTime)
     {
         currentEnemyCount = 0;
-        maxEnemyCount = enemyCount;
+        maxEnemyCount = enemyCount * 2;
         spawnIntervalTime = intervalTime; 
     }
     public void SpawnEnemies()

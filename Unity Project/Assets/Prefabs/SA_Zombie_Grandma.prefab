@@ -4600,6 +4600,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   moveSpeed: 5
+  attackDamage: 10
 --- !u!114 &-7666689036461877386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4616,6 +4617,8 @@ MonoBehaviour:
   enemyFXS: {fileID: 8300000, guid: eec961d9965b09c468aa1b0cdaa1bce5, type: 3}
   startingHealth: 50
   slider: {fileID: 1633130177236070641}
+  moneyManager: {fileID: 0}
+  alive: 1
 --- !u!1 &350576433608761917
 GameObject:
   m_ObjectHideFlags: 0
@@ -6156,7 +6159,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 10, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8538021372861678433
 CanvasRenderer:
