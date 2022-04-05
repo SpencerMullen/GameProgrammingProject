@@ -58,7 +58,7 @@ public class TurretAI : MonoBehaviour
         Debug.DrawRay(firePoint.transform.position, firePoint.transform.forward, Color.red);
         if (target!= null)
         {
-            //StartCoroutine(TurnToTarget());
+            StartCoroutine(TurnToTarget());
             
             transform.LookAt(target.position + Vector3.up * lookup);
             // after turret is all turned

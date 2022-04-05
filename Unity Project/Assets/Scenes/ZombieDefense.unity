@@ -745,8 +745,16 @@ MonoBehaviour:
   enemyWaves:
   - wave: 0
     waveType: 3
-    waveDuration: 60
+    waveDuration: 30
     EnemyNum: 3
+  - wave: 0
+    waveType: 3
+    waveDuration: 30
+    EnemyNum: 10
+  - wave: 0
+    waveType: 3
+    waveDuration: 30
+    EnemyNum: 20
   spawnedEnemies: []
 --- !u!4 &73917700
 Transform:
@@ -1202,7 +1210,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 426076, guid: d1143ba647e2e994284a0763e68697c6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -28.970943
+      value: -30.16
       objectReference: {fileID: 0}
     - target: {fileID: 426076, guid: d1143ba647e2e994284a0763e68697c6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3084,7 +3092,7 @@ MonoBehaviour:
   gizmoDetectedColor: {r: 1, g: 0, b: 0, a: 0.21960784}
   colliders: []
   colliderList: []
-  target: {fileID: 0}
+  target: {fileID: 350576433608761659, guid: a4ab70005e855af45bd1914a2f3b33d4, type: 3}
 --- !u!114 &375050116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3099,10 +3107,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firePoint: {fileID: 6802288}
   projectile: {fileID: 4167608846128716662, guid: 2d23740bed7f4a4419007392f9307e7d, type: 3}
-  projectileSpeed: 35
+  projectileSpeed: 100
   shootRate: 0.3
-  turretTurnAroundSpeed: 0
-  lookup: 0
+  turretTurnAroundSpeed: 20
+  lookup: 20
 --- !u!23 &375050117
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3160,12 +3168,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 375050114}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.95, y: 1.64, z: -7.41}
+  m_LocalPosition: {x: -8.33, y: 1.64, z: 107.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6802289}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &375676472 stripped
 GameObject:
@@ -3690,13 +3698,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9760ecdc69896047b38d30115ec61f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
-  cameraPos: {fileID: 0}
-  jump: {x: 0, y: 1, z: 0}
-  jumpForce: 5
-  isGrounded: 1
-  resetTime: 0
-  isReset: 0
 --- !u!114 &439030627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3724,7 +3725,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   gravity: 9.81
-  jumpHeight: 2
+  jumpHeight: 5
   airControl: 10
 --- !u!143 &439030629
 CharacterController:
@@ -5171,7 +5172,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 426076, guid: d1143ba647e2e994284a0763e68697c6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -28.970947
+      value: -29.84
       objectReference: {fileID: 0}
     - target: {fileID: 426076, guid: d1143ba647e2e994284a0763e68697c6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9869,8 +9870,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 4167608846128716662, guid: 2d23740bed7f4a4419007392f9307e7d, type: 3}
-  projectileSpeed: 50
-  shootRange: 100
+  projectileSpeed: 500
+  shootRange: 5000
   fpsCam: {fileID: 1314784335}
 --- !u!4 &1315482037 stripped
 Transform:
@@ -11312,7 +11313,7 @@ RectTransform:
   m_Children:
   - {fileID: 320838634}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -14864,7 +14865,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1909778126
 PrefabInstance:
@@ -15035,7 +15036,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1938886980
 PrefabInstance:

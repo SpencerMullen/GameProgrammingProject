@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-
+    public float bulletDamage = 10f;
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            collision.gameObject.SetActive(false);
-            Destroy(gameObject);
+            collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(bulletDamage);
         }
     }
 }
