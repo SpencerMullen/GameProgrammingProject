@@ -67,7 +67,7 @@ public class TurretAI : MonoBehaviour
             if (Time.time > nextFire)
             {
                 nextFire = Time.time + shootRate;
-                Debug.Log("Shoot");
+                
                 Shoot();
             }    
         }
