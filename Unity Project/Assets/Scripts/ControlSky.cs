@@ -15,15 +15,47 @@ public class ControlSky : MonoBehaviour
     public Color nightFog;
 
     public bool isNight;
-
+    [SerializeField]
+    public float oneDayTime = 60f;
     private void Start()
     {
         Instance = this;
         if (isNight)
+        {
             Night();
-        else 
+            StartCoroutine(NightChangeToDay());
+        }
+        else
+        {
             Day();
+            StartCoroutine(DayChangeToNight());
+        } 
     }
+
+    IEnumerator DayChangeToNight()
+    {
+        WaitForSeconds oneSec = new WaitForSeconds(1f);
+        for (int i = 0; i < oneDayTime; i++)
+        {
+            yield return oneSec;
+            RenderSettings.skybox.color = Color.Lerp(dayMat.color, nightMat.color, 1f/oneDayTime);
+        }
+        Night();
+        StartCoroutine(NightChangeToDay());
+    }
+
+    IEnumerator NightChangeToDay()
+    {
+        WaitForSeconds oneSec = new WaitForSeconds(1f);
+        for (int i = 0; i < oneDayTime; i++)
+        {
+            yield return oneSec;
+            RenderSettings.skybox.color = Color.Lerp(dayMat.color, nightMat.color, 1f/oneDayTime);
+        }
+        Day();
+        StartCoroutine(DayChangeToNight());
+    }
+
     // Update is called once per frame
     void Update()
     {

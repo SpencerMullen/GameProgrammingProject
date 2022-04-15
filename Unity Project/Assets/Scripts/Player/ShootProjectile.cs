@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class ShootProjectile : MonoBehaviour
 {
+    public static ShootProjectile Instance;
+
     [Header("Projectile Settings")]
     public GameObject projectile;
     [SerializeField]
@@ -35,6 +37,7 @@ public class ShootProjectile : MonoBehaviour
 
     private void Awake()
     {
+        Instance = this;
         rb = GetComponent<Rigidbody>();
     }
 
@@ -54,7 +57,7 @@ public class ShootProjectile : MonoBehaviour
     void Update()
     {
 
-        Debug.Log(Time.time + " // " + nextFire);
+        //Debug.Log(Time.time + " // " + nextFire);
         if (Input.GetKey(KeyCode.Mouse0) && Time.time >= nextFire)
         {
             nextFire = Time.time + 1f / fireRate;
@@ -81,6 +84,24 @@ public class ShootProjectile : MonoBehaviour
         //_rb.AddForce(transform.forward * projectileSpeed, ForceMode.VelocityChange);
     }
 
+    public Vector3 GetRayPoint()
+    {
+        RaycastHit hit;
+        // first person
+        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, float.MaxValue, LayerMask.GetMask("Ground")))
+        {
+
+            // TODO hit enemy
+            //Debug.Log(hit.transform.position);
+            return hit.transform.position;
+            
+            //hit.transform.GetComponent<>();
+        } else
+        {
+            return Vector3.zero;
+        }
+
+    }
     void Shoot_Ray()
     {
         flashEffect.Play(true); // plays flash

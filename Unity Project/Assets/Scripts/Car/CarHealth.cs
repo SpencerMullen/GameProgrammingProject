@@ -3,29 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnemyHealth : MonoBehaviour
+public class CarHealth : EnemyHealth
 {
-    public GameObject enemyKilled;
-    public AudioClip enemyFXS;
-    public float startingHealth;
-    protected float currentHealth;
-    public Slider slider;
-    public GameObject moneyManager;
-    public bool alive = true;
-
+    //public GameObject carExplosion;
+    //public AudioClip explosionFXS;
+    
     // Start is called before the first frame update
     void Start()
     {
         alive = true;
         currentHealth = startingHealth;
         slider.value = CalculateHealth();
-        if(moneyManager == null) {
-            moneyManager = GameObject.FindGameObjectWithTag("Lab");
-        }
     }
 
-    // Take damage
-    public virtual void TakeDamage(float damage){
+    //public void TakeDamage(float damage)
+    //{
+    //    this.currentHealth -= damage;
+    //}
+    public override void TakeDamage(float damage)
+    {
         // Debug.Log("HEALTH: " + currentHealth + "/" + startingHealth + " DAMAGE: " + damage);
         this.currentHealth -= damage;
         slider.value = CalculateHealth();
@@ -37,18 +33,32 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    // Initiate enemy destroy sequence
-    protected virtual void DestroyEnemy() {
-        
+    protected override void DestroyEnemy()
+    {
         GameObject blood = Instantiate(enemyKilled, transform.position + new Vector3(0f, 3f, 0), transform.rotation);
-        blood.transform.Rotate(0f, 90f, 0f);
+        ExplosionDamage(transform.position, 6);
         AudioSource.PlayClipAtPoint(enemyFXS, transform.position);
         moneyManager.GetComponent<MoneyManager>().addMoney(10);
         Destroy(gameObject);
-        
     }
 
-    float CalculateHealth() {
+    // Initiate enemy destroy sequence
+
+    void ExplosionDamage(Vector3 center, float radius)
+    {
+        Collider[] hitColliders= Physics.OverlapSphere(center, radius , LayerMask.GetMask("Enemy"));
+        foreach (var hitCollider in hitColliders)
+        {
+            EnemyHealth enem = GetComponent<EnemyHealth>();
+            if (enem !=  null)
+            {
+                enem.TakeDamage(15);
+            }
+        }
+    }
+
+    float CalculateHealth()
+    {
         return currentHealth / startingHealth;
     }
 }
