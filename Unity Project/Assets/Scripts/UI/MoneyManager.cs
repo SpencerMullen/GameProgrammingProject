@@ -6,12 +6,18 @@ using TMPro;
 
 public class MoneyManager : MonoBehaviour
 {
+    public static MoneyManager Instance;
+
     public float startingMoney = 0f;
     float currentMoney;
     public TextMeshProUGUI moneyText;
     public GameObject turret1;
 
-    // Start is called before the first frame update
+
+    private void Awake()
+    {
+        Instance = this;
+    }
     void Start()
     {
         currentMoney = startingMoney;
@@ -22,19 +28,28 @@ public class MoneyManager : MonoBehaviour
     {
         moneyText.text = "Radiation Collected: " + currentMoney;
 
-        if(Input.GetKeyDown("t")) {
-            createTurret(GameObject.FindGameObjectWithTag("Player").transform);
-        }
+        //if(Input.GetKeyDown("t")) {
+        //    createTurret(GameObject.FindGameObjectWithTag("Player").transform);
+        //}
     }
 
     public void addMoney(float value) {
         this.currentMoney += value;
     }
 
-    public void createTurret(Transform location) {
-        if(currentMoney >= 100) {
-            currentMoney -= 100;
-            Instantiate(turret1, location.position, Quaternion.identity);
+    // return true if have enough money
+    public bool UseMoney(float value)
+    {
+        if (currentMoney - value >= 0)
+        {
+            currentMoney -= value;
         }
+        return currentMoney - value >= 0;
     }
+    //public void createTurret(Transform location) {
+    //    if(currentMoney >= 100) {
+    //        currentMoney -= 100;
+    //        Instantiate(turret1, location.position, Quaternion.identity);
+    //    }
+    //}
 }

@@ -38,7 +38,7 @@ public class CarHealth : EnemyHealth
         GameObject blood = Instantiate(enemyKilled, transform.position + new Vector3(0f, 3f, 0), transform.rotation);
         ExplosionDamage(transform.position, 6);
         AudioSource.PlayClipAtPoint(enemyFXS, transform.position);
-        moneyManager.GetComponent<MoneyManager>().addMoney(10);
+        MoneyManager.Instance.addMoney(0);
         Destroy(gameObject);
     }
 

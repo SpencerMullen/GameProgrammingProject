@@ -13,6 +13,7 @@ public enum eEnemyWave
 
 public class SpawnManager : MonoBehaviour
 {
+    public GameObject boss;
     public static SpawnManager Instance;
 
     [System.Serializable]
@@ -40,13 +41,30 @@ public class SpawnManager : MonoBehaviour
         if (waveIndex < enemWave.wave)
         {
             StartCoroutine(StartWave());
-        } else
-        {
+        } else {
             // if wave ended
             // TODO if enemy all dead, print win or lose
-
+            switch(enemWave.waveType)
+            {
+                case eEnemyWave.Lane1:
+                    if(spawner1.spawnEnd) {
+                        spawner1.SpawnBoss(boss, enemWave.EnemyNum);   
+                    }
+                    break;
+                case eEnemyWave.Lane2:
+                    if(spawner2.spawnEnd) {
+                        spawner2.SpawnBoss(boss, enemWave.EnemyNum);
+                    }
+                    break;
+                case eEnemyWave.Lane3:
+                    if(spawner3.spawnEnd) {
+                        spawner3.SpawnBoss(boss, enemWave.EnemyNum); 
+                    }
+                    break;
+                case eEnemyWave.All:
+                    break;
+            }
         }
-        
     }
 
     public void SpawnLane(eEnemyWave waveType, int enemyNum)
@@ -88,6 +106,9 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+        spawner2.SpawnBoss(boss, 25);
+
         StartCoroutine(StartWave());
     }
 
@@ -98,6 +119,10 @@ public class SpawnManager : MonoBehaviour
     }
 
     public int getWave() {
-        return waveIndex;
+        return waveIndex + 1;
+    }
+
+    public void setWave(int index) {
+        waveIndex = index;
     }
 }

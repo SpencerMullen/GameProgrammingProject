@@ -11,15 +11,18 @@ public class EnemyMovement : MonoBehaviour
     
     private Vector3 initialPosition;
     
+    private Animator anim;
 
-    private void Start()
+    protected virtual void Start()
     {
         initialPosition = transform.position; 
+        anim = GetComponent<Animator>();
+        anim.SetBool("isWalk", true);
     }
 
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         float distToTarget = Vector3.Distance(this.transform.position, target.transform.position);
 

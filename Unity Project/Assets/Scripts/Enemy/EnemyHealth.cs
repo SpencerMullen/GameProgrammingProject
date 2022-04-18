@@ -10,8 +10,8 @@ public class EnemyHealth : MonoBehaviour
     public float startingHealth;
     protected float currentHealth;
     public Slider slider;
-    public GameObject moneyManager;
     public bool alive = true;
+    public int value;
 
     // Start is called before the first frame update
     void Start()
@@ -19,9 +19,6 @@ public class EnemyHealth : MonoBehaviour
         alive = true;
         currentHealth = startingHealth;
         slider.value = CalculateHealth();
-        if(moneyManager == null) {
-            moneyManager = GameObject.FindGameObjectWithTag("Lab");
-        }
     }
 
     // Take damage
@@ -43,9 +40,13 @@ public class EnemyHealth : MonoBehaviour
         GameObject blood = Instantiate(enemyKilled, transform.position + new Vector3(0f, 3f, 0), transform.rotation);
         blood.transform.Rotate(0f, 90f, 0f);
         AudioSource.PlayClipAtPoint(enemyFXS, transform.position);
-        moneyManager.GetComponent<MoneyManager>().addMoney(10);
+        MoneyManager.Instance.addMoney(value);
         Destroy(gameObject);
         
+    }
+
+    public float getCurrentHealth() {
+        return currentHealth;
     }
 
     float CalculateHealth() {

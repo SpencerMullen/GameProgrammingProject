@@ -4619,6 +4619,7 @@ MonoBehaviour:
   slider: {fileID: 1633130177236070641}
   moneyManager: {fileID: 0}
   alive: 1
+  value: 10
 --- !u!1 &350576433608761917
 GameObject:
   m_ObjectHideFlags: 0

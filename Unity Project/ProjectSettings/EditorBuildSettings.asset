@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/ZombieDefense.unity
+    guid: 0c4e5067002e6914fac626bb8235b57c
   m_configObjects: {}

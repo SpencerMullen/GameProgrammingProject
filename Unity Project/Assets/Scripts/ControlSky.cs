@@ -38,7 +38,7 @@ public class ControlSky : MonoBehaviour
         for (int i = 0; i < oneDayTime; i++)
         {
             yield return oneSec;
-            RenderSettings.skybox.color = Color.Lerp(dayMat.color, nightMat.color, 1f/oneDayTime);
+            //RenderSettings.skybox.color = Color.Lerp(dayMat.color, nightMat.color, 1f/oneDayTime);
         }
         Night();
         StartCoroutine(NightChangeToDay());
@@ -50,7 +50,7 @@ public class ControlSky : MonoBehaviour
         for (int i = 0; i < oneDayTime; i++)
         {
             yield return oneSec;
-            RenderSettings.skybox.color = Color.Lerp(dayMat.color, nightMat.color, 1f/oneDayTime);
+            //RenderSettings.skybox.color = Color.Lerp(dayMat.color, nightMat.color, 1f/oneDayTime);
         }
         Day();
         StartCoroutine(DayChangeToNight());

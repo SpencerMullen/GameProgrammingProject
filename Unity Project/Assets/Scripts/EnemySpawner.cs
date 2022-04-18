@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    public bool spawnEnd;
+
     [System.Serializable]
     public struct SpawnPos
     {
@@ -65,7 +67,28 @@ public class EnemySpawner : MonoBehaviour
         if (currentEnemyCount+1 < maxEnemyCount)
         {
             StartCoroutine(StartSpawn());
+        } else {
+            spawnEnd = true;
         }
+
+    }
+
+    public void SpawnBoss(GameObject boss, int seconds) {
+        StartCoroutine(StartSpawnBoss(boss, seconds));                       
+    }
+
+    IEnumerator StartSpawnBoss(GameObject boss, int seconds) {
+        yield return new WaitForSeconds(seconds);
+
+        GameObject.FindGameObjectWithTag("SpawnManager").GetComponent<SpawnManager>().setWave(1);
+        int ind = Random.Range(0, enemyXPos.Length);
+        var enem = Instantiate(boss, 
+            new Vector3(Random.Range(enemyXPos[ind].leftX, enemyXPos[ind].rightX), 
+                                    1.59f, 
+                                    enemyzpos), Quaternion.identity);
+        SpawnManager.Instance.spawnedEnemies.Add(enem.gameObject);
+        enem.GetComponent<EnemyMovement>().SetTarget(targetPoint);
+        currentEnemyCount++;   
     }
 
 }

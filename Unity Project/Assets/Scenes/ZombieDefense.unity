@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -230,7 +230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96d56432057fe344cabb0068345e10e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnManager: {fileID: 0}
+  spawnManager: {fileID: 73917698}
   waveText: {fileID: 1732133617}
 --- !u!114 &23557463
 MonoBehaviour:
@@ -629,6 +629,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39612cfbc9ea8aa44bfeb9f2c74c1a2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boss: {fileID: 6389819617834305591, guid: ddff31463c506914f8ffcd181eae501d, type: 3}
   spawner1: {fileID: 575264337}
   spawner2: {fileID: 446691644}
   spawner3: {fileID: 101281283}
@@ -636,19 +637,7 @@ MonoBehaviour:
   - wave: 0
     waveType: 0
     waveDuration: 30
-    EnemyNum: 10
-  - wave: 1
-    waveType: 1
-    waveDuration: 30
-    EnemyNum: 20
-  - wave: 2
-    waveType: 2
-    waveDuration: 30
-    EnemyNum: 30
-  - wave: 3
-    waveType: 3
-    waveDuration: 30
-    EnemyNum: 30
+    EnemyNum: 1
   spawnedEnemies: []
 --- !u!4 &73917700
 Transform:
@@ -778,6 +767,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d223c569b627f1347800a06921e173cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnEnd: 0
   targetPoint: {fileID: 755445384}
   enemy: {fileID: 350576433608761659, guid: a4ab70005e855af45bd1914a2f3b33d4, type: 3}
   enemyXPos:
@@ -3963,6 +3953,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d223c569b627f1347800a06921e173cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnEnd: 0
   targetPoint: {fileID: 1000910336}
   enemy: {fileID: 350576433608761659, guid: a4ab70005e855af45bd1914a2f3b33d4, type: 3}
   enemyXPos:
@@ -4234,7 +4225,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.39468262, g: 0.5377358, b: 0.07947663, a: 1}
+  m_Color: {r: 0.21477668, g: 0.2924528, b: 0.040005345, a: 1}
   m_Intensity: 1.25
   m_Range: 10
   m_SpotAngle: 30
@@ -5205,6 +5196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d223c569b627f1347800a06921e173cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnEnd: 0
   targetPoint: {fileID: 1866818262}
   enemy: {fileID: 350576433608761659, guid: a4ab70005e855af45bd1914a2f3b33d4, type: 3}
   enemyXPos:
@@ -9261,8 +9253,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -594, y: -20}
-  m_SizeDelta: {x: 300, y: 50}
+  m_AnchoredPosition: {x: -20, y: -60}
+  m_SizeDelta: {x: 150, y: 0}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1059307996
 MonoBehaviour:
@@ -9284,7 +9276,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Wave: '
+  m_text: 'Enemies: '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -9311,8 +9303,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
