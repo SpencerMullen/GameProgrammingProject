@@ -46,7 +46,7 @@ public class TurretAI : MonoBehaviour
             var proj = Instantiate(projectile, firePoint.transform.position, Quaternion.Euler(90f, 0.0f, 0.0f));
             proj.transform.rotation = Quaternion.Euler(proj.transform.rotation.x, transform.rotation.y, proj.transform.rotation.z);
             proj.GetComponent<Rigidbody>().AddForce(transform.forward * projectileSpeed,ForceMode.VelocityChange);
-            Debug.Log("Shoot Turret");
+            //Debug.Log("Shoot Turret");
         }
         
         

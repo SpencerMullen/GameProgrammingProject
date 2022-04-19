@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DarkTonic.MasterAudio;
+
 
 public class ShootProjectile : MonoBehaviour
 {
@@ -35,10 +37,16 @@ public class ShootProjectile : MonoBehaviour
     //public Color reticleDementorColor;
     //Color originalReticleColor;
 
+    private GunRecoil recoil;
+
+
+
     private void Awake()
     {
         Instance = this;
         rb = GetComponent<Rigidbody>();
+        recoil = GetComponent<GunRecoil>();
+
     }
 
     // Start is called before the first frame update
@@ -63,12 +71,17 @@ public class ShootProjectile : MonoBehaviour
             nextFire = Time.time + 1f / fireRate;
             if (UseRayShoot)
             {
+                GunAnim.Instance.anim.SetInteger("Fire", 2);
                 Shoot_Ray();
             } else
             {
                 Shoot_physics();
             }
             //currentRate = Time.time;
+        }
+        if (Input.GetKeyUp(KeyCode.Mouse0))
+        {
+            GunAnim.Instance.anim.SetInteger("Fire", -1);
         }
     }
 
@@ -86,6 +99,7 @@ public class ShootProjectile : MonoBehaviour
 
     public Vector3 GetRayPoint()
     {
+        
         RaycastHit hit;
         // first person
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, float.MaxValue, LayerMask.GetMask("Ground")))
@@ -104,6 +118,9 @@ public class ShootProjectile : MonoBehaviour
     }
     void Shoot_Ray()
     {
+
+        MasterAudio.PlaySound3DAtTransform("Shoot", shootPos);
+        recoil.RecoilFire();
         flashEffect.Play(true); // plays flash
         RaycastHit hit;
         // first person

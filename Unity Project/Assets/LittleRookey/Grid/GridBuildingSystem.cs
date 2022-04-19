@@ -29,12 +29,10 @@ public class GridBuildingSystem : MonoBehaviour
 
     private PlacedObjects.Dir currentDirection = PlacedObjects.Dir.Down;
 
-    private Transform player;
     bool buildReady = true;
 
     private void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
         //Instance = this;
         grid = new GridXZ<GridObject>(gridWidth, gridHeight, cellSize, originPos, (GridXZ<GridObject> g, int x, int z) => new GridObject(g, x, z));
         grid.SetDebug(showDebug, showGridNum, showGridBound);
@@ -85,7 +83,18 @@ public class GridBuildingSystem : MonoBehaviour
 
     }
 
+    private void PlaceObjectPlacement()
+    {
+        if (Input.GetMouseButtonDown(1) && placedObject != null && !UtilsClass.IsPointerOverUI())
+        {
+            Vector3 mousePos = UtilsClass.GetMouseWorldPosition3D(layer);
+            grid.GetXZ(mousePos, out int x, out int z);
 
+            //Vector2Int placedObjectOrigin = new Vector2Int(x, z);
+            //if (
+            //    )
+        }
+    }
     private void FixedUpdate()
     {
         if (buildReady)
@@ -101,15 +110,33 @@ public class GridBuildingSystem : MonoBehaviour
                     Debug.Log("Can build");
                     visual.gameObject.SetActive(true);
                     Vector2Int rotOffset = placedObject.GetRotationOffset(currentDirection);
+                    //Vector3 placedObjectWorldPos = grid.GetPlacementPosition(placedObject.visual, x, z);
+                    //+ new Vector3(rotOffset.x, 0, rotOffset.y) * grid.GetCellSize();
                     visual.transform.position = mousepos + Vector3.up;
                     visual.transform.rotation = Quaternion.Euler(0, placedObject.GetRotationAngle(currentDirection), 0);
+                    //Transform builtTransform = Instantiate(placedObject.prefab,
+                    //                                        placedObjectWorldPos,
+                    //                                        Quaternion.Euler(0, placedObject.GetRotationAngle(currentDirection),
+                    //                                        0));
+
+                    //foreach (Vector2Int gridPos in gridPosList)
+                    //{
+                    //    grid.GetGridObject(gridPos.x, gridPos.y).SetTransform(builtTransform);
+                    //}
                 }
 
-            } else
+            }
+            else
             {
                 visual.SetActive(false);
             }
-        }else
+            //else
+            //{
+            //    visual.SetActive(false);
+
+            //}
+        }
+        else
         {
             visual.SetActive(false);
         }
@@ -185,7 +212,7 @@ public class GridBuildingSystem : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Y))
         {
             buildReady = !buildReady;
-            UtilsClass.CreateWorldTextPopup($"Build Mode: {buildReady}", Vector3.left * 15 + player.position + Vector3.forward * 30f + Vector3.up);
+            UtilsClass.CreateWorldTextPopup($"Build Mode: {buildReady}", Mouse3D.GetMouseWorldPosition());
         }
 
 
@@ -217,11 +244,6 @@ public class GridBuildingSystem : MonoBehaviour
             //GridObject gridObject =  grid.GetGridObject(x, z);
             if (canBuild)
             {
-                if (!MoneyManager.Instance.UseMoney(placedObject.cost))// not enough money {
-                {
-                    UtilsClass.CreateWorldTextPopup("Not enough radiation!", Vector3.left * 15 + player.position + Vector3.forward * 30f + Vector3.up, 2f);
-                    return;
-                }
                 // Builds the Turret here
 
                 //Debug.Log("Clicked: " + x + ", " + z);

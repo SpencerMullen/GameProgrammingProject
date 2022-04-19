@@ -7,6 +7,13 @@ TagManager:
   - Enemy
   - Lab
   - SpawnManager
+  - Car
+  - AI
+  - Weapon
+  - WeaponCamera
+  - WeaponLayer
+  - Ladder
+  - HUDCanvas
   layers:
   - Default
   - TransparentFX
@@ -14,9 +21,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Enemy
+  - DrawAlways
+  - Ground
   - 
   - 
   - 

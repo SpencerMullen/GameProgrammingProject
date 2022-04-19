@@ -40,55 +40,60 @@ public class EnemySpawner : MonoBehaviour
     public void SetSpawner(int enemyCount, int intervalTime)
     {
         currentEnemyCount = 0;
-        maxEnemyCount = enemyCount * 2;
+        maxEnemyCount = enemyCount;
         spawnIntervalTime = intervalTime; 
     }
-    public void SpawnEnemies()
+    public void SpawnEnemies(EnemyWave enemWave)
     {
-        StartCoroutine(StartSpawn());
+        StartCoroutine(StartSpawn(enemWave));
     }
 
-    IEnumerator StartSpawn()
+    IEnumerator StartSpawn(EnemyWave enemWave)
     {
-        Debug.Log("Enemy spawned");
+        //Debug.Log(gameObject.name + ": " + currentEnemyCount + " / " + maxEnemyCount);
+        //if (currentEnemyCount+1 == maxEnemyCount && enemWave.spawnBoss)
+        //{
+            
+        //    yield break;
+        //}
         int ind = Random.Range(0, enemyXPos.Length);
 
         var enem = Instantiate(enemy, 
             new Vector3(Random.Range(enemyXPos[ind].leftX, enemyXPos[ind].rightX), 
                                     1.59f, 
                                     enemyzpos), Quaternion.identity);
-        //spawnedEnemies.Add(enem.gameObject);
+
+
         SpawnManager.Instance.spawnedEnemies.Add(enem.gameObject);
         enem.GetComponent<EnemyMovement>().SetTarget(targetPoint);
 
         currentEnemyCount++;
         yield return new WaitForSeconds(spawnIntervalTime);
-
-        if (currentEnemyCount+1 < maxEnemyCount)
+        //Debug.Log(gameObject.name + ": " +currentEnemyCount +" / "+ maxEnemyCount);
+        if (currentEnemyCount + 1 < maxEnemyCount)
         {
-            StartCoroutine(StartSpawn());
-        } else {
+            StartCoroutine(StartSpawn(enemWave));
+        }
+        else 
+        {
+            SpawnBoss(enemWave.boss);
             spawnEnd = true;
         }
 
     }
 
-    public void SpawnBoss(GameObject boss, int seconds) {
-        StartCoroutine(StartSpawnBoss(boss, seconds));                       
-    }
-
-    IEnumerator StartSpawnBoss(GameObject boss, int seconds) {
-        yield return new WaitForSeconds(seconds);
-
-        GameObject.FindGameObjectWithTag("SpawnManager").GetComponent<SpawnManager>().setWave(1);
+    public void SpawnBoss(GameObject boss) {
+        if (boss == null)
+            return;
+        //GameObject.FindGameObjectWithTag("SpawnManager").GetComponent<SpawnManager>().setWave(1);
+        Debug.Log("Spawned boss");
         int ind = Random.Range(0, enemyXPos.Length);
-        var enem = Instantiate(boss, 
-            new Vector3(Random.Range(enemyXPos[ind].leftX, enemyXPos[ind].rightX), 
-                                    1.59f, 
+        var enem = Instantiate(boss,
+            new Vector3(Random.Range(enemyXPos[ind].leftX, enemyXPos[ind].rightX),
+                                    1.59f,
                                     enemyzpos), Quaternion.identity);
         SpawnManager.Instance.spawnedEnemies.Add(enem.gameObject);
         enem.GetComponent<EnemyMovement>().SetTarget(targetPoint);
-        currentEnemyCount++;   
+        currentEnemyCount++;
     }
-
 }

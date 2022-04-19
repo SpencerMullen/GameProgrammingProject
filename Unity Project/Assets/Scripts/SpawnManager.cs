@@ -10,20 +10,24 @@ public enum eEnemyWave
     All,
 };
 
+[System.Serializable]
+public struct EnemyWave
+{
+    public int wave; // Wave index
+    public eEnemyWave waveType; // wave Type
+    public int waveDuration; // one round duration
+    public int EnemyNum; // number of enemies to be spawned
+    public GameObject boss;
+    public bool spawnBoss;
+}
+
 
 public class SpawnManager : MonoBehaviour
 {
     public GameObject boss;
     public static SpawnManager Instance;
 
-    [System.Serializable]
-    public struct EnemyWave
-    {
-        public int wave; // Wave index
-        public eEnemyWave waveType; // wave Type
-        public int waveDuration; // one round duration
-        public int EnemyNum; // number of enemies to be spawned
-    }
+    
     [SerializeField]
     EnemySpawner spawner1, spawner2, spawner3;
 
@@ -35,61 +39,44 @@ public class SpawnManager : MonoBehaviour
     IEnumerator StartWave()
     {
         EnemyWave enemWave = enemyWaves[waveIndex];
-        SpawnLane(enemWave.waveType, enemWave.EnemyNum);
-        yield return new WaitForSeconds(enemWave.waveDuration);
+        enemWave.spawnBoss = enemWave.boss != null;
+        SpawnLane(enemWave);
         waveIndex++;
-        if (waveIndex < enemWave.wave)
+        yield return new WaitForSeconds(enemWave.waveDuration);
+
+        if (waveIndex < enemyWaves.Length)
         {
             StartCoroutine(StartWave());
         } else {
-            // if wave ended
-            // TODO if enemy all dead, print win or lose
-            switch(enemWave.waveType)
-            {
-                case eEnemyWave.Lane1:
-                    if(spawner1.spawnEnd) {
-                        spawner1.SpawnBoss(boss, enemWave.EnemyNum);   
-                    }
-                    break;
-                case eEnemyWave.Lane2:
-                    if(spawner2.spawnEnd) {
-                        spawner2.SpawnBoss(boss, enemWave.EnemyNum);
-                    }
-                    break;
-                case eEnemyWave.Lane3:
-                    if(spawner3.spawnEnd) {
-                        spawner3.SpawnBoss(boss, enemWave.EnemyNum); 
-                    }
-                    break;
-                case eEnemyWave.All:
-                    break;
-            }
+            // if all wave ended
+            // just continue;
         }
+       
     }
 
-    public void SpawnLane(eEnemyWave waveType, int enemyNum)
+    public void SpawnLane(EnemyWave wave)
     {
-        switch(waveType)
+        switch(wave.waveType)
         {
             case eEnemyWave.Lane1:
-                spawner1.SetSpawner(enemyNum, 3);
-                spawner1.SpawnEnemies();
+                spawner1.SetSpawner(wave.EnemyNum, 1); //init spawner
+                spawner1.SpawnEnemies(wave);
                 break;
             case eEnemyWave.Lane2:
-                spawner2.SetSpawner(enemyNum, 3);
-                spawner2.SpawnEnemies();
+                spawner2.SetSpawner(wave.EnemyNum, 1);
+                spawner2.SpawnEnemies(wave);
                 break;
             case eEnemyWave.Lane3:
-                spawner3.SetSpawner(enemyNum, 3);
-                spawner3.SpawnEnemies();
+                spawner3.SetSpawner(wave.EnemyNum, 1);
+                spawner3.SpawnEnemies(wave);
                 break;
             case eEnemyWave.All:
-                spawner1.SetSpawner(enemyNum, 3);
-                spawner2.SetSpawner(enemyNum, 3);
-                spawner3.SetSpawner(enemyNum, 3);
-                spawner1.SpawnEnemies();
-                spawner2.SpawnEnemies();
-                spawner3.SpawnEnemies();
+                spawner1.SetSpawner(wave.EnemyNum, 1);
+                spawner2.SetSpawner(wave.EnemyNum, 1);
+                spawner3.SetSpawner(wave.EnemyNum, 1);
+                spawner1.SpawnEnemies(wave);
+                spawner2.SpawnEnemies(wave);
+                spawner3.SpawnEnemies(wave);
                 break;
         }
     }
@@ -106,9 +93,6 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-        spawner2.SpawnBoss(boss, 25);
-
         StartCoroutine(StartWave());
     }
 

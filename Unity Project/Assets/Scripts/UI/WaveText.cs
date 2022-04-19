@@ -10,7 +10,7 @@ public class WaveText : MonoBehaviour
     public TextMeshProUGUI waveText;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if(spawnManager == null) {
             spawnManager = GameObject.FindGameObjectWithTag("SpawnManager");
@@ -20,6 +20,6 @@ public class WaveText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        waveText.text = "Wave: " + spawnManager.GetComponent<SpawnManager>().getWave();
+        waveText.text = "Wave: " + SpawnManager.Instance.getWave();
     }
 }

@@ -46,6 +46,6 @@ public class Boss1Movement : EnemyMovement
                 this.moveSpeed = 10f;
                 break;
         }
-        Debug.Log("state: " + currentState);
+        //Debug.Log("state: " + currentState);
     }
 }
