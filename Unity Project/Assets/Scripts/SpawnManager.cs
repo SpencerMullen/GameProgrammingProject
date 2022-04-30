@@ -83,6 +83,14 @@ public class SpawnManager : MonoBehaviour
             fire2.SetActive(false);
             fire3.SetActive(true);
             fire3.GetComponent<ParticleSystem>().Play(true);
+        } else if (num== 4)
+        {
+            fire1.SetActive(true);
+            fire2.SetActive(true);
+            fire3.SetActive(true);
+            fire1.GetComponent<ParticleSystem>().Play(true);
+            fire2.GetComponent<ParticleSystem>().Play(true);
+            fire3.GetComponent<ParticleSystem>().Play(true);
         }
         else
         {
@@ -118,9 +126,7 @@ public class SpawnManager : MonoBehaviour
                 spawner1.SpawnEnemies(wave);
                 spawner2.SpawnEnemies(wave);
                 spawner3.SpawnEnemies(wave);
-                StartCoroutine(TurnFireFor(1, wave.waveDuration));
-                StartCoroutine(TurnFireFor(2, wave.waveDuration));
-                StartCoroutine(TurnFireFor(3, wave.waveDuration));
+                StartCoroutine(TurnFireFor(4, wave.waveDuration));
                 break;
         }
     }

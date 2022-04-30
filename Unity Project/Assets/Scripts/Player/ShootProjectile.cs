@@ -39,7 +39,7 @@ public class ShootProjectile : MonoBehaviour
 
     private GunRecoil recoil;
 
-
+    public static bool canShoot;
 
     private void Awake()
     {
@@ -52,7 +52,7 @@ public class ShootProjectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        canShoot = true;
 
         //originalReticleColor = crossHair.color;
     }
@@ -66,7 +66,7 @@ public class ShootProjectile : MonoBehaviour
     {
 
         //Debug.Log(Time.time + " // " + nextFire);
-        if (Input.GetKey(KeyCode.Mouse0) && Time.time >= nextFire)
+        if (Input.GetKey(KeyCode.Mouse0) && Time.time >= nextFire && canShoot)
         {
             nextFire = Time.time + 1f / fireRate;
             if (UseRayShoot)
@@ -144,6 +144,7 @@ public class ShootProjectile : MonoBehaviour
             {  // if it hits the enemy
                 enemHealth.TakeDamage(projectileDamage);
                 crossHair.transform.localScale = new Vector3(0.5f, 0.5f, 1);
+                crossHair.color = Color.red;
             }
 
             GameObject imp = Instantiate(impactOnHit, hit.point, Quaternion.LookRotation(hit.normal));
@@ -168,6 +169,7 @@ public class ShootProjectile : MonoBehaviour
             {
                 //crossHair.color = Color.Lerp(crossHair.color, originalReticleColor, Time.deltaTime * 2);
                 crossHair.transform.localScale = Vector3.Lerp(crossHair.transform.localScale, Vector3.one, Time.deltaTime * 2);
+                crossHair.color = Color.white;
             }
         }
     }
