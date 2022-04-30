@@ -76,6 +76,11 @@ public class GridBuildingSystem : MonoBehaviour
             return transform == null;
         }
 
+        public bool IsWithinGrid()
+        {
+            //grid.GetWidth() * grid.GetCellSize() + 
+            return true;
+        }
         public override string ToString()
         {
             return x + ", " + z + "\n" + transform;
@@ -105,6 +110,7 @@ public class GridBuildingSystem : MonoBehaviour
             //List<Vector2Int> gridPosList = placedObject.GetGridPositionList(new Vector2Int(x, z), currentDirection);
             if (grid.isValidGrid(x, z))
             {
+                Debug.Log($"{gameObject.name} : {grid.GetGridObject(x, z).CanBuild()}");
                 if (grid.GetGridObject(x, z).CanBuild())
                 {
                     Debug.Log("Can build");
@@ -159,7 +165,7 @@ public class GridBuildingSystem : MonoBehaviour
 
             Vector3 mousePos = Mouse3D.GetMouseWorldPosition();
             grid.GetXZ(mousePos, out int x, out int z);
-            Debug.Log("x and z: " + x + ", " + z);
+            //Debug.Log("x and z: " + x + ", " + z);
 
             List<Vector2Int> gridPosList = placedObject.GetGridPositionList(new Vector2Int(x, z), currentDirection);
 
@@ -224,7 +230,7 @@ public class GridBuildingSystem : MonoBehaviour
 
             Vector3 mousePos = Mouse3D.GetMouseWorldPosition();
             grid.GetXZ(mousePos, out int x, out int z);
-            Debug.Log("x and z: " + x + ", " + z);
+            //Debug.Log("x and z: " + x + ", " + z);
 
             List<Vector2Int> gridPosList = placedObject.GetGridPositionList(new Vector2Int(x, z), currentDirection);
 
@@ -242,7 +248,7 @@ public class GridBuildingSystem : MonoBehaviour
 
 
             //GridObject gridObject =  grid.GetGridObject(x, z);
-            if (canBuild)
+            if (canBuild && MoneyManager.Instance.UseMoney(placedObject.cost))
             {
                 // Builds the Turret here
 

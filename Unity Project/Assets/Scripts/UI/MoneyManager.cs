@@ -11,7 +11,6 @@ public class MoneyManager : MonoBehaviour
     public float startingMoney = 0f;
     float currentMoney;
     public TextMeshProUGUI moneyText;
-    public GameObject turret1;
 
 
     private void Awake()
@@ -27,10 +26,6 @@ public class MoneyManager : MonoBehaviour
     void Update()
     {
         moneyText.text = "Radiation Collected: " + currentMoney;
-
-        //if(Input.GetKeyDown("t")) {
-        //    createTurret(GameObject.FindGameObjectWithTag("Player").transform);
-        //}
     }
 
     public void addMoney(float value) {
@@ -40,9 +35,11 @@ public class MoneyManager : MonoBehaviour
     // return true if have enough money
     public bool UseMoney(float value)
     {
+        Debug.Log($"{currentMoney} - {value}");
         if (currentMoney - value >= 0)
         {
             currentMoney -= value;
+            return true;
         }
         return currentMoney - value >= 0;
     }

@@ -128,7 +128,7 @@ public class ShootProjectile : MonoBehaviour
         {
 
             // TODO hit enemy
-            Debug.Log(hit.transform.position);
+            //Debug.Log(hit.transform.position);
 
             if (enableKnockBack)
             {
